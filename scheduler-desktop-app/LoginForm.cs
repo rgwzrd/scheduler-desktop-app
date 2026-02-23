@@ -24,6 +24,7 @@ namespace scheduler_desktop_app
         private void LoginForm_Load(object sender, EventArgs e)
         {
             cmbLanguage.SelectedIndex = 0;
+            ApplyStrings();
 
             lblLocation.Text = LocationService.GetUserLocationSummary();
 
@@ -53,22 +54,31 @@ namespace scheduler_desktop_app
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
-
-            string u = (txtUsername.Text ?? "").Trim();
-            string p = (txtPassword.Text ?? "").Trim();
-
-            if (u == "test" && p == "test")
+            try
             {
-                // success condition
+                lblError.Text = "";
+                lblError.Visible = false;
+
+                string u = (txtUsername.Text ?? "").Trim();
+                string p = (txtPassword.Text ?? "").Trim();
+
+                if (u == "test" && p == "test")
+                {
+                    lblError.Text = "Login successful."; // placeholder
+                    lblError.Visible = true;
+                    lblError.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblError.Text = Localization.Strings.Error_InvalidCredentials;
+                    lblError.ForeColor = System.Drawing.Color.Red;
+                    lblError.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblError.Text = Localization.Strings.Error_InvalidCredentials;
+                lblError.Text = ex.Message;
                 lblError.Visible = true;
-                lblError.MaximumSize = new Size(250, 0);
-                lblError.AutoSize = true;
             }
         }
 
