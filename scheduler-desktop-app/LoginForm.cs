@@ -1,4 +1,5 @@
-﻿using System;
+﻿using scheduler_desktop_app.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace scheduler_desktop_app
         private void LoginForm_Load(object sender, EventArgs e)
         {
             cmbLanguage.SelectedIndex = 0;
+
+            lblLocation.Text = LocationService.GetUserLocationSummary();
         }
 
         private void label1_Click(object sender, EventArgs e)
