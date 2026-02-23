@@ -97,6 +97,15 @@ namespace scheduler_desktop_app.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login successful..
+        /// </summary>
+        internal static string Login_Success {
+            get {
+                return ResourceManager.GetString("Login_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         internal static string Login_Title {

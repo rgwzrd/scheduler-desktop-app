@@ -64,7 +64,7 @@ namespace scheduler_desktop_app
 
                 if (u == "test" && p == "test")
                 {
-                    lblError.Text = "Login successful."; // placeholder
+                    lblError.Text = Localization.Strings.Login_Success; // placeholder
                     lblError.Visible = true;
                     lblError.ForeColor = System.Drawing.Color.Green;
                 }

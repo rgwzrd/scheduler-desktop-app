@@ -129,6 +129,9 @@
   <data name="Login_Button" xml:space="preserve">
     <value>Entrar</value>
   </data>
+  <data name="Login_Success" xml:space="preserve">
+    <value>Inicio de sesión exitoso.</value>
+  </data>
   <data name="Login_Title" xml:space="preserve">
     <value>Iniciar sesión</value>
   </data>
