@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManagementForm.Designer.cs">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\ICustomerRepository.cs" />
     <Compile Include="Data\InMemoryCustomerRepository.cs" />
     <Compile Include="CustomerEditForm.cs">
@@ -77,6 +83,9 @@
     <Compile Include="Services\LocationService.cs" />
     <EmbeddedResource Include="CustomerEditForm.resx">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManagementForm.resx">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Strings.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>

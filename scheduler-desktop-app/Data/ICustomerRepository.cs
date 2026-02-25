@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace scheduler_desktop_app.Data
 {
-    internal class ICustomerRepository
+    internal interface ICustomerRepository
     {
         List<Customer> GetAll();
         void Add(Customer customer);
