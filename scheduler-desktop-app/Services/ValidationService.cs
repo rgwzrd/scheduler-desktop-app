@@ -10,7 +10,7 @@ namespace scheduler_desktop_app.Services
 {
     internal class ValidationService
     {
-        private static readonly Regex PhoneRegex = new Regex(@"^[0-9-]+$");
+        private static readonly Regex PhoneRegex = new Regex(@"^[0-9-]{7,15}$");
         public static List<string> ValidateCustomer(Customer customer)
         {
             var errors = new List<string>();

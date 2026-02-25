@@ -56,6 +56,9 @@ namespace scheduler_desktop_app
 
             var errors = ValidationService.ValidateCustomer(customer);
 
+            lblError.Text = "Errors found: " + errors.Count;
+            lblError.Visible = true;
+
             if (errors.Any())
             {
                 lblError.Text = string.Join(Environment.NewLine, errors);
