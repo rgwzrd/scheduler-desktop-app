@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace scheduler_desktop_app.Models
 {
-    internal class Customer
+    public class Customer
     {
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }

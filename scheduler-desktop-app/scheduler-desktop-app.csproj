@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Data\ICustomerRepository.cs" />
     <Compile Include="Data\InMemoryCustomerRepository.cs" />
+    <Compile Include="CustomerEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerEditForm.Designer.cs">
+      <DependentUpon>CustomerEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Localization\Strings.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ValidationService.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <EmbeddedResource Include="CustomerEditForm.resx">
+      <DependentUpon>CustomerEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localization\Strings.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.es.Designer.cs</LastGenOutput>
