@@ -60,6 +60,7 @@
     <Compile Include="CustomerEditForm.Designer.cs">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\CustomerOperationException.cs" />
     <Compile Include="Localization\Strings.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,5 +121,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

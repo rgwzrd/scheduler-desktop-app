@@ -46,6 +46,13 @@ namespace scheduler_desktop_app
             return dgvCustomers.CurrentRow.DataBoundItem as Customer;
         }
 
+        private void ShowError(string message)
+        {
+            lblError.Text = message;
+            lblError.ForeColor = Color.Red;
+            lblError.Visible = true;
+        }
+
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
@@ -63,8 +70,7 @@ namespace scheduler_desktop_app
 
                     catch (CustomerOperationException ex)
                     {
-                        lblError.Text = ex.Message;
-                        lblError.Visible = true;
+                        ShowError(ex.Message);
                     }
                     catch (Exception ex)
                     {
@@ -100,8 +106,7 @@ namespace scheduler_desktop_app
                     }
                     catch (CustomerOperationException ex)
                     {
-                        lblError.Text = ex.Message;
-                        lblError.Visible = true;
+                        ShowError(ex.Message);
                     }
                     catch (Exception ex)
                     {
@@ -134,9 +139,7 @@ namespace scheduler_desktop_app
 
             catch (CustomerOperationException ex)
             {
-                lblError.Text = ex.Message;
-                lblError.ForeColor = Color.Red;
-                lblError.Visible = true;
+                ShowError(ex.Message);
             }
 
             catch (Exception ex)
