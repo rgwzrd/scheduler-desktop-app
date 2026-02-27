@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using scheduler_desktop_app.Exceptions;
 
 namespace scheduler_desktop_app
 {
@@ -54,8 +55,22 @@ namespace scheduler_desktop_app
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    _repo.Add(form.CustomerResult);
-                    LoadCustomers();
+                    try
+                    {
+                        _repo.Add(form.CustomerResult);
+                        LoadCustomers();
+                    }
+
+                    catch (CustomerOperationException ex)
+                    {
+                        lblError.Text = ex.Message;
+                        lblError.Visible = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = "Unexpected error while adding customer.";
+                        lblError.Visible = true;
+                    }
                 }
             }
         }
@@ -78,8 +93,22 @@ namespace scheduler_desktop_app
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    _repo.Update(form.CustomerResult);
-                    LoadCustomers();
+                    try
+                    {
+                        _repo.Update(form.CustomerResult);
+                        LoadCustomers();
+                    }
+                    catch (CustomerOperationException ex)
+                    {
+                        lblError.Text = ex.Message;
+                        lblError.Visible = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = "Unexpected error while updating customer.";
+                        lblError.Visible = true;
+                    }
+
                 }
             }
         }
@@ -97,9 +126,24 @@ namespace scheduler_desktop_app
                 lblError.Visible = true;
                 return;
             }
+            try
+            {
+                _repo.Delete(selected.CustomerId);
+                LoadCustomers();
+            }
 
-            _repo.Delete(selected.CustomerId);
-            LoadCustomers();
+            catch (CustomerOperationException ex)
+            {
+                lblError.Text = ex.Message;
+                lblError.ForeColor = Color.Red;
+                lblError.Visible = true;
+            }
+
+            catch (Exception ex)
+            {
+                lblError.Text = "Unexpected error while deleting customer.";
+                lblError.Visible = true;
+            }
         }
 
     }
