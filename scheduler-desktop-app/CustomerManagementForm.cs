@@ -131,6 +131,7 @@ namespace scheduler_desktop_app
                 lblError.Visible = true;
                 return;
             }
+
             try
             {
                 _repo.Delete(selected.CustomerId);

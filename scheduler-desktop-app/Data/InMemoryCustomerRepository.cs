@@ -77,7 +77,7 @@ namespace scheduler_desktop_app.Data
             try
             {
                 var existing = _customers.FirstOrDefault(c => c.CustomerId == customerId);
-                if (existing != null)
+                if (existing == null)
                     throw new InvalidOperationException("Customer record not found.");
                     
                 _customers.Remove(existing);
