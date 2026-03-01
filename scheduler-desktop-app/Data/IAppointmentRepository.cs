@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace scheduler_desktop_app.Data
 {
-    internal interface IAppointmentRepository
+    public interface IAppointmentRepository
     {
         List<Appointment> GetAll();
         List<Appointment> GetByUser(int userId);
