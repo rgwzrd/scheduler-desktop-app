@@ -95,9 +95,9 @@
             // 
             // btnCalendar
             // 
-            this.btnCalendar.Location = new System.Drawing.Point(66, 547);
+            this.btnCalendar.Location = new System.Drawing.Point(26, 529);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(157, 98);
+            this.btnCalendar.Size = new System.Drawing.Size(247, 103);
             this.btnCalendar.TabIndex = 5;
             this.btnCalendar.Text = "View Calendar";
             this.btnCalendar.UseVisualStyleBackColor = true;

@@ -13,10 +13,12 @@ namespace scheduler_desktop_app
 {
     public partial class CalendarForm : Form
     {
+
         public CalendarForm()
         {
             InitializeComponent();
         }
+        
 
         private void CalendarForm_Load(object sender, EventArgs e)
         {
@@ -57,6 +59,9 @@ namespace scheduler_desktop_app
 
             dgvDayAppointments.DataSource = null;
             dgvDayAppointments.DataSource = dayAppts;
+
+        }
+       
         }
     }
-}
+
