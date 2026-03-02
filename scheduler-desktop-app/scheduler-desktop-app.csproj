@@ -69,12 +69,19 @@
     <Compile Include="CustomerEditForm.Designer.cs">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\AppointmentOperationException.cs" />
     <Compile Include="Exceptions\CustomerOperationException.cs" />
     <Compile Include="AppointmentEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AppointmentEditForm.Designer.cs">
       <DependentUpon>AppointmentEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Localization\Strings.es.Designer.cs">
       <AutoGen>True</AutoGen>
