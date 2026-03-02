@@ -20,4 +20,3 @@ namespace scheduler_desktop_app.Data
         bool Overlaps(int userId, DateTime startUtc, DateTime endUtc, int ignoreAppointmentId);
     }
 }
-}

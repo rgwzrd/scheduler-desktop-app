@@ -15,7 +15,7 @@ namespace scheduler_desktop_app
 {
     public partial class CustomerManagementForm : Form
     {
-        private readonly ICustomerRepository _repo = new InMemoryCustomerRepository();
+        private readonly ICustomerRepository _repo = AppState.CustomerRepo;
         public CustomerManagementForm()
         {
             InitializeComponent();

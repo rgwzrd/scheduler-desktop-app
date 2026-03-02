@@ -10,35 +10,52 @@ namespace scheduler_desktop_app.Services
 {
     internal static class TimeService
     {
-        public static TimeZoneInfo GetEasternTimeZone()
+        public static DateTime PickerToUtc(DateTime pickerValue)
         {
-            try
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            }
-            catch
-            { }
+            if (pickerValue.Kind == DateTimeKind.Utc)
+                return pickerValue;
 
-            return TimeZoneInfo.FindSystemTimeZoneById("America/New York");
+            if (pickerValue.Kind == DateTimeKind.Local)
+                return pickerValue.ToUniversalTime();
+
+            return TimeZoneInfo.ConvertTimeToUtc(pickerValue, TimeZoneInfo.Local);
         }
 
-        public static DateTime LocalToUtc(DateTime local)
+        public static DateTime LocalPickerValueToUtc(DateTime pickerValue)
         {
-            var localKind = DateTime.SpecifyKind(local, DateTimeKind.Local);
-            return localKind.ToUniversalTime();
+            return PickerToUtc(pickerValue);
         }
 
         public static DateTime UtcToLocal(DateTime utc)
         {
-            var utcKind = DateTime.SpecifyKind(utc, DateTimeKind.Utc);
-            return utcKind.ToLocalTime();
+            var u = (utc.Kind == DateTimeKind.Utc) ? utc : DateTime.SpecifyKind(utc, DateTimeKind.Utc);
+            return u.ToLocalTime();
+        }
+
+        public static DateTime LocalToUtc(DateTime local)
+        {
+            if (local.Kind == DateTimeKind.Utc)
+                return local;
+
+            if (local.Kind == DateTimeKind.Local)
+                return local.ToUniversalTime();
+
+            return TimeZoneInfo.ConvertTimeToUtc(local, TimeZoneInfo.Local);
+        }
+
+        public static TimeZoneInfo GetEasternTimeZone()
+        {
+            try { return TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"); }
+            catch { }
+
+            return TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
         }
 
         public static DateTime UtcToEastern(DateTime utc)
         {
             var tz = GetEasternTimeZone();
-            var utcKind = DateTime.SpecifyKind(utc, DateTimeKind.Utc);
-            return TimeZoneInfo.ConvertTimeToUtc(utcKind, tz);
+            var u = (utc.Kind == DateTimeKind.Utc) ? utc : DateTime.SpecifyKind(utc, DateTimeKind.Utc);
+            return TimeZoneInfo.ConvertTimeFromUtc(u, tz);
         }
 
         public static bool IsWithinBusinessHoursEastern(DateTime startUtc, DateTime endUtc)
@@ -46,8 +63,10 @@ namespace scheduler_desktop_app.Services
             var startEt = UtcToEastern(startUtc);
             var endEt = UtcToEastern(endUtc);
 
+            // Must be same ET calendar day
             if (startEt.Date != endEt.Date) return false;
 
+            // Must be Mon–Fri
             var day = startEt.DayOfWeek;
             if (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) return false;
 

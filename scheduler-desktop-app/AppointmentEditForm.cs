@@ -91,8 +91,8 @@ namespace scheduler_desktop_app
             var startLocal = dtpStart.Value;
             var endLocal = dtpEnd.Value;
 
-            var startUtc = TimeService.LocalToUtc(startLocal);
-            var endUtc = TimeService.LocalToUtc(endLocal);
+            var startUtc = TimeService.LocalPickerValueToUtc(dtpStart.Value);
+            var endUtc = TimeService.LocalPickerValueToUtc(dtpEnd.Value);
 
             string type = txtType.Text ?? "";
 
@@ -132,5 +132,6 @@ namespace scheduler_desktop_app
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
     }
 }
