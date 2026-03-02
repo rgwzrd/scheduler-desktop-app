@@ -163,5 +163,13 @@ namespace scheduler_desktop_app
                 ShowErrorText();
             }
         }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            using (var f = new CalendarForm())
+            {
+                f.ShowDialog();
+            }
+        }
     }
 }
