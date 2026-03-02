@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using scheduler_desktop_app.Exceptions;
 
 namespace scheduler_desktop_app.Data
 {
@@ -29,27 +30,54 @@ namespace scheduler_desktop_app.Data
 
         public void Add(Appointment appt)
         {
-            appt.AppointmentId = _nextId++;
-            _appts.Add(Clone(appt));
+            try
+            {
+                if (appt == null) throw new ArgumentNullException(nameof(appt));
+
+                appt.AppointmentId = _nextId++;
+                _appts.Add(Clone(appt));
+            }
+            catch (Exception ex)
+            {
+                throw new AppointmentOperationException("Add", "Unable to add appointment.", ex);
+            }
         }
 
         public void Update(Appointment appt)
         {
-            var existing = _appts.FirstOrDefault(a => a.AppointmentId == appt.AppointmentId);
-            if (existing == null) return;
+            try
+            {
+                if (appt == null) throw new ArgumentNullException(nameof(appt));
 
-            existing.CustomerId = appt.CustomerId;
-            existing.CustomerName = appt.CustomerName;
-            existing.UserId = appt.UserId;
-            existing.Type = appt.Type;
-            existing.StartUtc = appt.StartUtc;
-            existing.EndUtc = appt.EndUtc;
+                var existing = _appts.FirstOrDefault(a => a.AppointmentId == appt.AppointmentId);
+                if (existing == null) throw new InvalidOperationException("Appointment not found.");
+
+                existing.CustomerId = appt.CustomerId;
+                existing.CustomerName = appt.CustomerName;
+                existing.UserId = appt.UserId;
+                existing.Type = appt.Type;
+                existing.StartUtc = appt.StartUtc;
+                existing.EndUtc = appt.EndUtc;
+            }
+            catch (Exception ex)
+            {
+                throw new AppointmentOperationException("Update", "Unable to update appointment.", ex);
+            }
         }
 
         public void Delete(int appointmentId)
         {
-            var existing = _appts.FirstOrDefault(a => a.AppointmentId == appointmentId);
-            if (existing != null) _appts.Remove(existing);
+            try
+            {
+                var existing = _appts.FirstOrDefault(a => a.AppointmentId == appointmentId);
+                if (existing == null) throw new InvalidOperationException("Appointment not found.");
+
+                _appts.Remove(existing);
+            }
+            catch (Exception ex)
+            {
+                throw new AppointmentOperationException("Delete", "Unable to delete appointment.", ex);
+            }
         }
 
         public bool Overlaps(int userId, DateTime startUtc, DateTime endUtc, int ignoreAppointmentId)
