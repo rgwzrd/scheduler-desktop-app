@@ -18,6 +18,7 @@ namespace scheduler_desktop_app
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
             Application.Run(new CustomerManagementForm());
+            Application.Run(new AppointmentManagementForm());
         }
     }
 }

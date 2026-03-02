@@ -1,4 +1,5 @@
-﻿using System;
+﻿using scheduler_desktop_app.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,9 @@ namespace scheduler_desktop_app.Models
 
         public System.DateTime StartUtc { get; set; }
         public DateTime EndUtc { get; set; }
+
+        public DateTime StartLocal => TimeService.UtcToLocal(StartUtc);
+        public DateTime EndLocal => TimeService.UtcToLocal(EndUtc);
+
     }
 }
