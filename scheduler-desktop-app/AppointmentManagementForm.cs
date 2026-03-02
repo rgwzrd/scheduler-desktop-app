@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using scheduler_desktop_app.Exceptions;
 
 namespace scheduler_desktop_app
 {
@@ -78,8 +79,21 @@ namespace scheduler_desktop_app
             {
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    AppState.AppointmentRepo.Add(f.Result);
-                    LoadAppointments();
+                    try
+                    {
+                        AppState.AppointmentRepo.Add(f.Result);
+                        LoadAppointments();
+                    }
+                    catch (AppointmentOperationException ex)
+                    {
+                        lblError.Text = ex.Message;
+                        ShowErrorText();
+                    }
+                    catch (Exception)
+                    {
+                        lblError.Text = "Unexpected error while adding appointment.";
+                        ShowErrorText();
+                    }
                 }
             }
         }
@@ -102,8 +116,21 @@ namespace scheduler_desktop_app
             {
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    AppState.AppointmentRepo.Update(f.Result);
-                    LoadAppointments();
+                    try
+                    {
+                        AppState.AppointmentRepo.Update(f.Result);
+                        LoadAppointments();
+                    }
+                    catch (AppointmentOperationException ex)
+                    {
+                        lblError.Text = ex.Message;
+                        ShowErrorText();
+                    }
+                    catch (Exception)
+                    {
+                        lblError.Text = "Unexpected error while updating appointment.";
+                        ShowErrorText();
+                    }
                 }
             }
         }
@@ -120,8 +147,21 @@ namespace scheduler_desktop_app
                 return;
             }
 
-            AppState.AppointmentRepo.Delete(selected.AppointmentId);
-            LoadAppointments();
+            try
+            {
+                AppState.AppointmentRepo.Delete(selected.AppointmentId);
+                LoadAppointments();
+            }
+            catch (AppointmentOperationException ex)
+            {
+                lblError.Text = ex.Message;
+                ShowErrorText();
+            }
+            catch (Exception)
+            {
+                lblError.Text = "Unexpected error while deleting appointment.";
+                ShowErrorText();
+            }
         }
     }
 }
