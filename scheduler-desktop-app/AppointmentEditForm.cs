@@ -91,8 +91,8 @@ namespace scheduler_desktop_app
             var startLocal = dtpStart.Value;
             var endLocal = dtpEnd.Value;
 
-            var startUtc = TimeService.LocalPickerValueToUtc(dtpStart.Value);
-            var endUtc = TimeService.LocalPickerValueToUtc(dtpEnd.Value);
+            var startUtc = TimeService.PickerToUtc(dtpStart.Value);
+            var endUtc = TimeService.PickerToUtc(dtpEnd.Value);
 
             string type = txtType.Text ?? "";
 
