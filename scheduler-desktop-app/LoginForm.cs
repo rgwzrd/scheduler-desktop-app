@@ -78,6 +78,8 @@ namespace scheduler_desktop_app
                     {
                         MessageBox.Show(msg, "Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    LoginHistoryService.Append(u);
                 }
                 else
                 {

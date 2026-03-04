@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Services\AppointmentAlertService.cs" />
     <Compile Include="Services\AppointmentValidationService.cs" />
+    <Compile Include="Services\LoginHistoryService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\TimeService.cs" />
     <Compile Include="Services\ValidationService.cs" />
