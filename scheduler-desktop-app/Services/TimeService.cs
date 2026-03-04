@@ -63,10 +63,8 @@ namespace scheduler_desktop_app.Services
             var startEt = UtcToEastern(startUtc);
             var endEt = UtcToEastern(endUtc);
 
-            // Must be same ET calendar day
             if (startEt.Date != endEt.Date) return false;
 
-            // Must be Mon–Fri
             var day = startEt.DayOfWeek;
             if (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) return false;
 
