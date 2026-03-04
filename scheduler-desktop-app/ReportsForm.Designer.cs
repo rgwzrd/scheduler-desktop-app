@@ -55,7 +55,7 @@
             // 
             this.btnTypesByMonth.Location = new System.Drawing.Point(119, 106);
             this.btnTypesByMonth.Name = "btnTypesByMonth";
-            this.btnTypesByMonth.Size = new System.Drawing.Size(118, 38);
+            this.btnTypesByMonth.Size = new System.Drawing.Size(118, 57);
             this.btnTypesByMonth.TabIndex = 1;
             this.btnTypesByMonth.Text = "Types By Month";
             this.btnTypesByMonth.UseVisualStyleBackColor = true;
@@ -63,9 +63,9 @@
             // 
             // btnScheduleByUser
             // 
-            this.btnScheduleByUser.Location = new System.Drawing.Point(119, 169);
+            this.btnScheduleByUser.Location = new System.Drawing.Point(119, 188);
             this.btnScheduleByUser.Name = "btnScheduleByUser";
-            this.btnScheduleByUser.Size = new System.Drawing.Size(118, 41);
+            this.btnScheduleByUser.Size = new System.Drawing.Size(118, 59);
             this.btnScheduleByUser.TabIndex = 2;
             this.btnScheduleByUser.Text = "Schedule By User";
             this.btnScheduleByUser.UseVisualStyleBackColor = true;
@@ -73,9 +73,9 @@
             // 
             // btnCustomerReport
             // 
-            this.btnCustomerReport.Location = new System.Drawing.Point(119, 235);
+            this.btnCustomerReport.Location = new System.Drawing.Point(119, 272);
             this.btnCustomerReport.Name = "btnCustomerReport";
-            this.btnCustomerReport.Size = new System.Drawing.Size(118, 57);
+            this.btnCustomerReport.Size = new System.Drawing.Size(118, 74);
             this.btnCustomerReport.TabIndex = 3;
             this.btnCustomerReport.Text = "Customer Appointment Counts";
             this.btnCustomerReport.UseVisualStyleBackColor = true;
