@@ -171,5 +171,13 @@ namespace scheduler_desktop_app
                 f.ShowDialog();
             }
         }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            using (var f = new ReportsForm())
+            {
+                f.ShowDialog();
+            }
+        }
     }
 }
