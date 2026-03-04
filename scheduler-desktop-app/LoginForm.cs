@@ -1,4 +1,5 @@
 ﻿using scheduler_desktop_app.Services;
+using scheduler_desktop_app.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,9 +65,19 @@ namespace scheduler_desktop_app
 
                 if (u == "test" && p == "test")
                 {
-                    lblError.Text = Localization.Strings.Login_Success; // placeholder
+                    AppState.CurrentUserId = 1;
+
+                    lblError.Text = Localization.Strings.Login_Success;
                     lblError.Visible = true;
                     lblError.ForeColor = System.Drawing.Color.Green;
+
+                    var next = AppointmentAlertService.GetNextAppointmentWithinMinutes(AppState.CurrentUserId, 15);
+                    var msg = AppointmentAlertService.BuildAlertMessage(next);
+
+                    if (!string.IsNullOrWhiteSpace(msg))
+                    {
+                        MessageBox.Show(msg, "Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
