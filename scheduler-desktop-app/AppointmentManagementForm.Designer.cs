@@ -41,7 +41,8 @@
             // dgvAppointments
             // 
             this.dgvAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAppointments.Location = new System.Drawing.Point(129, 45);
+            this.dgvAppointments.Location = new System.Drawing.Point(129, 46);
+            this.dgvAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvAppointments.Name = "dgvAppointments";
             this.dgvAppointments.ReadOnly = true;
             this.dgvAppointments.RowHeadersWidth = 51;
@@ -52,6 +53,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(23, 59);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 1;
@@ -62,6 +64,7 @@
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(23, 103);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 2;
@@ -71,7 +74,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(23, 147);
+            this.btnDelete.Location = new System.Drawing.Point(23, 146);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -92,9 +96,9 @@
             // btnCalendar
             // 
             this.btnCalendar.Location = new System.Drawing.Point(11, 229);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(1);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(104, 45);
+            this.btnCalendar.Size = new System.Drawing.Size(104, 46);
             this.btnCalendar.TabIndex = 5;
             this.btnCalendar.Text = "View Calendar";
             this.btnCalendar.UseVisualStyleBackColor = true;
@@ -103,6 +107,7 @@
             // btnReports
             // 
             this.btnReports.Location = new System.Drawing.Point(11, 299);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(104, 36);
             this.btnReports.TabIndex = 6;
@@ -122,8 +127,10 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvAppointments);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AppointmentManagementForm";
-            this.Text = "Appointment Management Form";
+            this.Text = "Appointment Management";
+            this.Load += new System.EventHandler(this.AppointmentManagementForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
