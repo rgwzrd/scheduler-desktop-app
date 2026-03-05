@@ -72,7 +72,7 @@ namespace scheduler_desktop_app
                     {
                         ShowError(ex.Message);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         lblError.Text = "Unexpected error while adding customer.";
                         lblError.Visible = true;
@@ -108,7 +108,7 @@ namespace scheduler_desktop_app
                     {
                         ShowError(ex.Message);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         lblError.Text = "Unexpected error while updating customer.";
                         lblError.Visible = true;
@@ -143,7 +143,7 @@ namespace scheduler_desktop_app
                 ShowError(ex.Message);
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 lblError.Text = "Unexpected error while deleting customer.";
                 lblError.Visible = true;

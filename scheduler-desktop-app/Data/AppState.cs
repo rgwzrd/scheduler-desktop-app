@@ -8,8 +8,9 @@ namespace scheduler_desktop_app.Data
 {
     internal static class AppState
     {
-        public static int CurrentUserId = 1;
-        public static ICustomerRepository CustomerRepo = new InMemoryCustomerRepository();
-        public static IAppointmentRepository AppointmentRepo = new InMemoryAppointmentRepository();
+        public static int CurrentUserId = 0;
+
+        public static ICustomerRepository CustomerRepo = new MySqlCustomerRepository();
+        public static IAppointmentRepository AppointmentRepo = new MySqlAppointmentRepository();
     }
 }

@@ -14,7 +14,6 @@ namespace scheduler_desktop_app
 {
     public partial class CustomerEditForm : Form
     {
-        private readonly bool _isEditMode;
         private readonly int _customerId;
 
         public Customer CustomerResult { get; private set; }
@@ -22,7 +21,6 @@ namespace scheduler_desktop_app
         public CustomerEditForm()
         {
             InitializeComponent();
-            _isEditMode = false;
             _customerId = 0;
             Text = "Add Customer";
         }
@@ -30,7 +28,6 @@ namespace scheduler_desktop_app
         public CustomerEditForm(Customer existing)
         {
             InitializeComponent();
-            _isEditMode = true;
             _customerId = existing.CustomerId;
 
             Text = "Edit Customer";
@@ -56,8 +53,6 @@ namespace scheduler_desktop_app
 
             var errors = ValidationService.ValidateCustomer(customer);
 
-            lblError.Text = "Errors found: " + errors.Count;
-            lblError.Visible = true;
 
             if (errors.Any())
             {

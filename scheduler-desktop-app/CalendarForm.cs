@@ -18,7 +18,7 @@ namespace scheduler_desktop_app
         {
             InitializeComponent();
         }
-        
+
 
         private void CalendarForm_Load(object sender, EventArgs e)
         {
@@ -61,7 +61,7 @@ namespace scheduler_desktop_app
             dgvDayAppointments.DataSource = dayAppts;
 
         }
-       
-        }
+
     }
+}
 

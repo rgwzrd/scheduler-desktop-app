@@ -18,7 +18,6 @@ namespace scheduler_desktop_app
     public partial class LoginForm : Form
     {
         private readonly System.Windows.Forms.Timer _loginSuccessTimer = new System.Windows.Forms.Timer();
-        private string _loginUserToLog;
 
         public LoginForm()
         {
@@ -69,19 +68,20 @@ namespace scheduler_desktop_app
                 string u = (txtUsername.Text ?? "").Trim();
                 string p = (txtPassword.Text ?? "").Trim();
 
-                if (u == "test" && p == "test")
+                var userRepo = new MySqlUserRepository();
+                int? userId = userRepo.GetUserIdByCredentials(u, p);
+
+                if (userId != null)
                 {
-                    Data.AppState.CurrentUserId = 1;
+                    AppState.CurrentUserId = userId.Value;
 
                     lblError.Text = Localization.Strings.Login_Success;
                     lblError.Visible = true;
                     lblError.ForeColor = System.Drawing.Color.Green;
-
                     lblError.Refresh();
 
                     var next = AppointmentAlertService.GetNextAppointmentWithinMinutes(AppState.CurrentUserId, 15);
                     var msg = AppointmentAlertService.BuildAlertMessage(next);
-
                     if (!string.IsNullOrWhiteSpace(msg))
                     {
                         MessageBox.Show(msg, "Appointment Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -107,6 +107,7 @@ namespace scheduler_desktop_app
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+                lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Visible = true;
             }
         }

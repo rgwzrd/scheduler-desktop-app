@@ -41,19 +41,19 @@
             // 
             this.dgvReports.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReports.Location = new System.Drawing.Point(260, 80);
+            this.dgvReports.Location = new System.Drawing.Point(181, 69);
             this.dgvReports.MultiSelect = false;
             this.dgvReports.Name = "dgvReports";
             this.dgvReports.ReadOnly = true;
             this.dgvReports.RowHeadersWidth = 51;
             this.dgvReports.RowTemplate.Height = 24;
             this.dgvReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReports.Size = new System.Drawing.Size(650, 381);
+            this.dgvReports.Size = new System.Drawing.Size(484, 381);
             this.dgvReports.TabIndex = 0;
             // 
             // btnTypesByMonth
             // 
-            this.btnTypesByMonth.Location = new System.Drawing.Point(119, 106);
+            this.btnTypesByMonth.Location = new System.Drawing.Point(40, 95);
             this.btnTypesByMonth.Name = "btnTypesByMonth";
             this.btnTypesByMonth.Size = new System.Drawing.Size(118, 57);
             this.btnTypesByMonth.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             // btnScheduleByUser
             // 
-            this.btnScheduleByUser.Location = new System.Drawing.Point(119, 188);
+            this.btnScheduleByUser.Location = new System.Drawing.Point(40, 177);
             this.btnScheduleByUser.Name = "btnScheduleByUser";
             this.btnScheduleByUser.Size = new System.Drawing.Size(118, 59);
             this.btnScheduleByUser.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             // btnCustomerReport
             // 
-            this.btnCustomerReport.Location = new System.Drawing.Point(119, 272);
+            this.btnCustomerReport.Location = new System.Drawing.Point(40, 261);
             this.btnCustomerReport.Name = "btnCustomerReport";
             this.btnCustomerReport.Size = new System.Drawing.Size(118, 74);
             this.btnCustomerReport.TabIndex = 3;
@@ -84,7 +84,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(267, 47);
+            this.lblTitle.Location = new System.Drawing.Point(188, 36);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(55, 16);
             this.lblTitle.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(267, 485);
+            this.lblError.Location = new System.Drawing.Point(188, 474);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 16);
             this.lblError.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 600);
+            this.ClientSize = new System.Drawing.Size(742, 539);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnCustomerReport);
@@ -112,7 +112,7 @@
             this.Controls.Add(this.btnTypesByMonth);
             this.Controls.Add(this.dgvReports);
             this.Name = "ReportsForm";
-            this.Text = "ReportsForm";
+            this.Text = "Reports";
             ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

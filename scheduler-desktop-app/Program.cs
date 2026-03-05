@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using scheduler_desktop_app.Data;
 using scheduler_desktop_app.Models;
+using scheduler_desktop_app.Database;
 
 namespace scheduler_desktop_app
 {
@@ -19,7 +20,21 @@ namespace scheduler_desktop_app
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new SchedulerApplicationContext());
+            try
+            {
+                DBConnection.StartConnection();
+                AppState.CustomerRepo = new MySqlCustomerRepository();
+                AppState.AppointmentRepo = new MySqlAppointmentRepository();
+                Application.Run(new SchedulerApplicationContext());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                DBConnection.CloseConnection();
+            }
         }
     }
 }
