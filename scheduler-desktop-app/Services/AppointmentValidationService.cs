@@ -30,7 +30,7 @@ namespace scheduler_desktop_app.Services
 
             if (!TimeService.IsWithinBusinessHoursEastern(startUtc, endUtc))
             {
-                errors.Add("Appointment must be scheduled Mon-Fri between 9:00 and 17:00 Eastern Time.");
+                errors.Add("Appointment must be Mon-Fri, 9:00-17:00 (Eastern Time).");
             }
 
             if (overlapsExisting())

@@ -34,7 +34,7 @@ namespace scheduler_desktop_app.Data
         private static void EnsureConn()
         {
             if (DBConnection.Conn == null || DBConnection.Conn.State != System.Data.ConnectionState.Open)
-                throw new InvalidOperationException("Database connection is not open. Call DBConnection.startConnection()/StartConnection() at startup.");
+                throw new InvalidOperationException("Database connection is not open. Call DBConnection.StartConnection() at startup.");
         }
     }
 }

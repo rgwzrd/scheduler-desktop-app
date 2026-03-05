@@ -10,6 +10,7 @@ namespace scheduler_desktop_app.Data
     internal class MySqlAppointmentRepository : IAppointmentRepository
     {
         private const string AuditUser = "test";
+        private const string NotUsedText = "N/A";
 
         public List<Appointment> GetAll()
         {
@@ -155,12 +156,12 @@ namespace scheduler_desktop_app.Data
                     cmd.Parameters.AddWithValue("@customerId", appt.CustomerId);
                     cmd.Parameters.AddWithValue("@userId", appt.UserId);
 
-                    cmd.Parameters.AddWithValue("@title", "not needed");
-                    cmd.Parameters.AddWithValue("@description", "not needed");
-                    cmd.Parameters.AddWithValue("@location", "not needed");
-                    cmd.Parameters.AddWithValue("@contact", "not needed");
-                    cmd.Parameters.AddWithValue("@type", (appt.Type ?? "not needed").Trim());
-                    cmd.Parameters.AddWithValue("@url", "not needed");
+                    cmd.Parameters.AddWithValue("@title", NotUsedText);
+                    cmd.Parameters.AddWithValue("@description", NotUsedText);
+                    cmd.Parameters.AddWithValue("@location", NotUsedText);
+                    cmd.Parameters.AddWithValue("@contact", NotUsedText);
+                    cmd.Parameters.AddWithValue("@type", (appt.Type ?? NotUsedText).Trim());
+                    cmd.Parameters.AddWithValue("@url", NotUsedText);
 
                     cmd.Parameters.AddWithValue("@startUtc", EnsureUtc(appt.StartUtc));
                     cmd.Parameters.AddWithValue("@endUtc", EnsureUtc(appt.EndUtc));
@@ -310,7 +311,7 @@ namespace scheduler_desktop_app.Data
         private static void EnsureConn()
         {
             if (DBConnection.Conn == null || DBConnection.Conn.State != System.Data.ConnectionState.Open)
-                throw new InvalidOperationException("Database connection is not open. Call DBConnection.startConnection()/StartConnection() at startup.");
+                throw new InvalidOperationException("Database connection is not open. Call DBConnection.StartConnection() at startup.");
         }
     }
 }

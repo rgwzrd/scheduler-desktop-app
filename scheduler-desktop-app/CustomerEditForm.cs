@@ -25,6 +25,11 @@ namespace scheduler_desktop_app
             Text = "Add Customer";
         }
 
+        private void ShowErrorText()
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Visible = true;
+        }
         public CustomerEditForm(Customer existing)
         {
             InitializeComponent();
@@ -57,7 +62,7 @@ namespace scheduler_desktop_app
             if (errors.Any())
             {
                 lblError.Text = string.Join(Environment.NewLine, errors);
-                lblError.Visible = true;
+                ShowErrorText();
                 return;
             }
 
@@ -71,11 +76,6 @@ namespace scheduler_desktop_app
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void lblName_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
