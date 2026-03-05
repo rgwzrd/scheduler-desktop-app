@@ -174,7 +174,7 @@ namespace scheduler_desktop_app.Data
             }
         }
 
-        public void Delete(int customerID)
+        public void Delete(int customerId)
         {
             try
             {
@@ -184,13 +184,13 @@ namespace scheduler_desktop_app.Data
                 {
                     try
                     {
-                        int addressId = GetAddressIdForCustomer(customerID, tx);
+                        int addressId = GetAddressIdForCustomer(customerId, tx);
 
                         using (var cmd = DBConnection.Conn.CreateCommand())
                         {
                             cmd.Transaction = tx;
                             cmd.CommandText = "DELETE FROM appointment WHERE customerId = @customerId;";
-                            cmd.Parameters.AddWithValue("@customerId", customerID);
+                            cmd.Parameters.AddWithValue("@customerId", customerId);
                             cmd.ExecuteNonQuery();
                         }
 
@@ -198,7 +198,7 @@ namespace scheduler_desktop_app.Data
                         {
                             cmd.Transaction = tx;
                             cmd.CommandText = "DELETE FROM customer WHERE customerId = @customerId;";
-                            cmd.Parameters.AddWithValue("@customerId", customerID);
+                            cmd.Parameters.AddWithValue("@customerId", customerId);
                             cmd.ExecuteNonQuery();
                         }
 
@@ -228,7 +228,7 @@ namespace scheduler_desktop_app.Data
         private static void EnsureConn()
         {
             if (DBConnection.Conn == null || DBConnection.Conn.State != System.Data.ConnectionState.Open)
-                throw new InvalidOperationException("Database connection is not open. Call DBConnection.startConnection() at startup.");
+                throw new InvalidOperationException("Database connection is not open. Call DBConnection.StartConnection() at startup.");
         }
 
         private static int InsertAddress(MySqlTransaction tx, string address, string phone, DateTime now)
