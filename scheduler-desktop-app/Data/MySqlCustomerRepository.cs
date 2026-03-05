@@ -186,7 +186,6 @@ namespace scheduler_desktop_app.Data
                     {
                         int addressId = GetAddressIdForCustomer(customerID, tx);
 
-                        // Delete appointments first (FK constraint safe)
                         using (var cmd = DBConnection.Conn.CreateCommand())
                         {
                             cmd.Transaction = tx;
@@ -195,7 +194,6 @@ namespace scheduler_desktop_app.Data
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Delete customer
                         using (var cmd = DBConnection.Conn.CreateCommand())
                         {
                             cmd.Transaction = tx;
@@ -204,7 +202,6 @@ namespace scheduler_desktop_app.Data
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Delete address
                         using (var cmd = DBConnection.Conn.CreateCommand())
                         {
                             cmd.Transaction = tx;
@@ -247,7 +244,7 @@ namespace scheduler_desktop_app.Data
                     SELECT LAST_INSERT_ID();";
 
                 cmd.Parameters.AddWithValue("@address", address);
-                cmd.Parameters.AddWithValue("@address2", ""); // placeholder
+                cmd.Parameters.AddWithValue("@address2", "");
                 cmd.Parameters.AddWithValue("@cityId", DefaultCityId);
                 cmd.Parameters.AddWithValue("@postalCode", DefaultPostalCode);
                 cmd.Parameters.AddWithValue("@phone", phone);
