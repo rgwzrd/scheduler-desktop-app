@@ -16,7 +16,7 @@ namespace scheduler_desktop_app
         private CustomerManagementForm _customers;
         private AppointmentManagementForm _appointments;
         private CalendarForm _calendar;
-        private ReportsForm _reports;
+        //private ReportsForm _reports;
 
         public MainForm()
         {
@@ -90,18 +90,18 @@ namespace scheduler_desktop_app
                 _calendar.Activate();
             }
         }
-        private void OpenReports()
-        {
-            if (_reports == null || _reports.IsDisposed)
-            {
-                _reports = new ReportsForm { MdiParent = this };
-                _reports.Show();
-            }
-            else
-            {
-                _reports.Activate();
-            }
-        }
+        //private void OpenReports()
+        //{
+        //    if (_reports == null || _reports.IsDisposed)
+        //    {
+        //        _reports = new ReportsForm { MdiParent = this };
+        //        _reports.Show();
+        //    }
+        //    else
+        //    {
+        //        _reports.Activate();
+        //    }
+        //}
 
     }
 }
