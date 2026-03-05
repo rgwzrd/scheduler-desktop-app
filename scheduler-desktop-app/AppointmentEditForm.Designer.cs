@@ -98,11 +98,10 @@
             // 
             // lblError
             // 
-            this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(50, 192);
+            this.lblError.Location = new System.Drawing.Point(53, 195);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 16);
+            this.lblError.Size = new System.Drawing.Size(220, 60);
             this.lblError.TabIndex = 6;
             this.lblError.Visible = false;
             // 

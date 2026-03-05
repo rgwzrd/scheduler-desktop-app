@@ -74,8 +74,7 @@ namespace scheduler_desktop_app
                     }
                     catch (Exception)
                     {
-                        lblError.Text = "Unexpected error while adding customer.";
-                        lblError.Visible = true;
+                        ShowError("Unexpected error while adding customer.");
                     }
                 }
             }
@@ -89,9 +88,7 @@ namespace scheduler_desktop_app
             var selected = GetSelectedCustomer();
             if (selected == null)
             {
-                lblError.Text = "Select a customer to edit.";
-                lblError.ForeColor = Color.Red;
-                lblError.Visible = true;
+                ShowError("Select a customer to edit.");
                 return;
             }
 
@@ -110,8 +107,7 @@ namespace scheduler_desktop_app
                     }
                     catch (Exception)
                     {
-                        lblError.Text = "Unexpected error while updating customer.";
-                        lblError.Visible = true;
+                        ShowError("Unexpected error while updating customer.");
                     }
 
                 }
@@ -126,9 +122,7 @@ namespace scheduler_desktop_app
             var selected = GetSelectedCustomer();
             if (selected == null)
             {
-                lblError.Text = "Select a customer to delete.";
-                lblError.ForeColor = Color.Red;
-                lblError.Visible = true;
+                ShowError("Select a customer to delete.");
                 return;
             }
 
@@ -145,8 +139,7 @@ namespace scheduler_desktop_app
 
             catch (Exception)
             {
-                lblError.Text = "Unexpected error while deleting customer.";
-                lblError.Visible = true;
+                ShowError("Unexpected error while deleting customer.");
             }
         }
 

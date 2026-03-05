@@ -20,6 +20,12 @@ namespace scheduler_desktop_app
         private readonly bool _isEdit;
         private readonly int _apptId;
 
+        private void ShowErrorText()
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Visible = true;
+        }
+
         public Appointment Result { get; private set; }
 
         public AppointmentEditForm(IAppointmentRepository apptRepo, Customer[] customers, int userId)
@@ -82,7 +88,7 @@ namespace scheduler_desktop_app
             if (cmbCustomer.SelectedItem == null)
             {
                 lblError.Text = "Customer selection is required.";
-                lblError.Visible = true;
+                ShowErrorText();
                 return;
             }
 
@@ -108,7 +114,7 @@ namespace scheduler_desktop_app
             if (errors.Any())
             {
                 lblError.Text = string.Join(Environment.NewLine, errors);
-                lblError.Visible = true;
+                ShowErrorText();
                 return;
             }
 

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
+using System.Runtime.CompilerServices;
 
 
 namespace scheduler_desktop_app
@@ -38,9 +39,11 @@ namespace scheduler_desktop_app
             lblError.Visible = false;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void ShowError(string message)
         {
-
+            lblError.Text = message;
+            lblError.ForeColor = System.Drawing.Color.Red;
+            lblError.Visible = true;
         }
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,11 +54,6 @@ namespace scheduler_desktop_app
 
             Thread.CurrentThread.CurrentUICulture = culture;
             ApplyStrings();
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -99,16 +97,13 @@ namespace scheduler_desktop_app
                 }
                 else
                 {
-                    lblError.Text = Localization.Strings.Error_InvalidCredentials;
-                    lblError.ForeColor = System.Drawing.Color.Red;
-                    lblError.Visible = true;
+                    ShowError(Localization.Strings.Error_InvalidCredentials);
+
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message;
-                lblError.ForeColor = System.Drawing.Color.Red;
-                lblError.Visible = true;
+                ShowError(ex.Message);
             }
         }
 

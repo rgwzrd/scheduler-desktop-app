@@ -50,13 +50,13 @@
             this.dgvDayAppointments.Name = "dgvDayAppointments";
             this.dgvDayAppointments.RowHeadersWidth = 51;
             this.dgvDayAppointments.RowTemplate.Height = 46;
-            this.dgvDayAppointments.Size = new System.Drawing.Size(556, 251);
+            this.dgvDayAppointments.Size = new System.Drawing.Size(550, 251);
             this.dgvDayAppointments.TabIndex = 1;
             // 
             // lblSelectedDay
             // 
             this.lblSelectedDay.AutoSize = true;
-            this.lblSelectedDay.Location = new System.Drawing.Point(110, 269);
+            this.lblSelectedDay.Location = new System.Drawing.Point(180, 253);
             this.lblSelectedDay.Name = "lblSelectedDay";
             this.lblSelectedDay.Size = new System.Drawing.Size(90, 16);
             this.lblSelectedDay.TabIndex = 2;
@@ -75,7 +75,7 @@
             // CalendarForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(627, 601);
+            this.ClientSize = new System.Drawing.Size(618, 601);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblSelectedDay);
             this.Controls.Add(this.dgvDayAppointments);

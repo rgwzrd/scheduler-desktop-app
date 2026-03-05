@@ -48,7 +48,6 @@
             this.lblUsername.Size = new System.Drawing.Size(70, 16);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
-            this.lblUsername.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtUsername
             // 
@@ -109,7 +108,6 @@
             this.lblLocation.Size = new System.Drawing.Size(62, 16);
             this.lblLocation.TabIndex = 6;
             this.lblLocation.Text = "Unknown";
-            this.lblLocation.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // lblLocationTitle
             // 
@@ -133,7 +131,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(177, 231);
+            this.lblError.Location = new System.Drawing.Point(107, 228);
             this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 16);

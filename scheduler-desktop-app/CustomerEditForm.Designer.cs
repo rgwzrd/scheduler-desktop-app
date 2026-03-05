@@ -47,7 +47,6 @@
             this.lblName.Size = new System.Drawing.Size(44, 16);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // lblAddress
             // 
@@ -112,7 +111,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(97, 147);
+            this.lblError.Location = new System.Drawing.Point(97, 160);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 16);
             this.lblError.TabIndex = 8;
