@@ -99,6 +99,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Reports\ReportRows.cs" />
@@ -110,6 +116,7 @@
     <Compile Include="ReportsForm.Designer.cs">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SchedulerApplicationContext.cs" />
     <Compile Include="Services\AppointmentAlertService.cs" />
     <Compile Include="Services\AppointmentValidationService.cs" />
     <Compile Include="Services\LoginHistoryService.cs" />
