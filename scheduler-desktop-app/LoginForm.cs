@@ -17,9 +17,15 @@ namespace scheduler_desktop_app
 {
     public partial class LoginForm : Form
     {
+        private readonly System.Windows.Forms.Timer _loginSuccessTimer = new System.Windows.Forms.Timer();
+        private string _loginUserToLog;
+
         public LoginForm()
         {
             InitializeComponent();
+
+            _loginSuccessTimer.Interval = 2000;
+            _loginSuccessTimer.Tick += LoginSuccessTimer_Tick;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -65,11 +71,13 @@ namespace scheduler_desktop_app
 
                 if (u == "test" && p == "test")
                 {
-                    AppState.CurrentUserId = 1;
+                    Data.AppState.CurrentUserId = 1;
 
                     lblError.Text = Localization.Strings.Login_Success;
                     lblError.Visible = true;
                     lblError.ForeColor = System.Drawing.Color.Green;
+
+                    lblError.Refresh();
 
                     var next = AppointmentAlertService.GetNextAppointmentWithinMinutes(AppState.CurrentUserId, 15);
                     var msg = AppointmentAlertService.BuildAlertMessage(next);
@@ -80,6 +88,14 @@ namespace scheduler_desktop_app
                     }
 
                     LoginHistoryService.Append(u);
+
+                    btnLogin.Enabled = false;
+                    txtUsername.Enabled = false;
+                    txtPassword.Enabled = false;
+                    cmbLanguage.Enabled = false;
+
+                    _loginSuccessTimer.Start();
+                    return;
                 }
                 else
                 {
@@ -103,6 +119,13 @@ namespace scheduler_desktop_app
             btnLogin.Text = Localization.Strings.Login_Button;
             lblLanguage.Text = Localization.Strings.Language_Label;
             lblLocationTitle.Text = Localization.Strings.Location_Label;
+        }
+
+        private void LoginSuccessTimer_Tick(object sender, EventArgs e)
+        {
+            _loginSuccessTimer.Stop();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
