@@ -35,19 +35,19 @@ The app includes customer management, appointment scheduling, calendar views, re
 
 ### Login
 
-<img src="docs/assets/screenshots/login.png" alt="Login screen" width="500">
+<img src="scheduler-desktop-app/docs/assets/screenshots/login.png" alt="Login screen" width="500">
 
 ### Customers
 
-<img src="docs/assets/screenshots/customers.png" alt="Customer management screen" width="500">
+<img src="scheduler-desktop-app/docs/assets/screenshots/customers.png" alt="Customer management screen" width="500">
 
 ### Appointments
 
-<img src="docs/assets/screenshots/appointments.png" alt="Appointment management screen" width="500">
+<img src="scheduler-desktop-app/docs/assets/screenshots/appointments.png" alt="Appointment management screen" width="500">
 
 ### Reports
 
-<img src="docs/assets/screenshots/reports.png" alt="Reports screen" width="500">
+<img src="scheduler-desktop-app/docs/assets/screenshots/reports.png" alt="Reports screen" width="500">
 
 ## How to Run
 
