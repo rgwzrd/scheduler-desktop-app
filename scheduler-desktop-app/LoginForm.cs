@@ -66,8 +66,7 @@ namespace scheduler_desktop_app
                 string u = (txtUsername.Text ?? "").Trim();
                 string p = (txtPassword.Text ?? "").Trim();
 
-                var userRepo = new MySqlUserRepository();
-                int? userId = userRepo.GetUserIdByCredentials(u, p);
+                int? userId = AppState.UserRepo.GetUserIdByCredentials(u, p);
 
                 if (userId != null)
                 {

@@ -1,40 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
 using scheduler_desktop_app.Data;
-using scheduler_desktop_app.Models;
 using scheduler_desktop_app.Database;
+using scheduler_desktop_app.Services;
 
 namespace scheduler_desktop_app
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            bool useDemoData = IsDemoModeEnabled();
+
             try
             {
-                DBConnection.StartConnection();
-                AppState.CustomerRepo = new MySqlCustomerRepository();
-                AppState.AppointmentRepo = new MySqlAppointmentRepository();
+                ConfigureRepositories(useDemoData);
                 Application.Run(new SchedulerApplicationContext());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowStartupError(ex);
             }
             finally
             {
-                DBConnection.CloseConnection();
+                if (!useDemoData)
+                {
+                    DBConnection.CloseConnection();
+                }
             }
+        }
+
+        private static bool IsDemoModeEnabled()
+        {
+            string value = ConfigurationManager.AppSettings["UseDemoData"];
+
+            return string.Equals(
+                value,
+                "true",
+                StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static void ConfigureRepositories(bool useDemoData)
+        {
+            AppState.IsDemoMode = useDemoData;
+
+            if (useDemoData)
+            {
+                AppState.UserRepo = new InMemoryUserRepository();
+                AppState.CustomerRepo = new InMemoryCustomerRepository();
+                AppState.AppointmentRepo = new InMemoryAppointmentRepository();
+
+                DemoDataSeeder.Seed();
+                return;
+            }
+
+            DBConnection.StartConnection();
+
+            AppState.UserRepo = new MySqlUserRepository();
+            AppState.CustomerRepo = new MySqlCustomerRepository();
+            AppState.AppointmentRepo = new MySqlAppointmentRepository();
+        }
+
+        private static void ShowStartupError(Exception ex)
+        {
+            string message = "The application could not start.";
+
+            try
+            {
+                ErrorLogService.Log(ex);
+                message += Environment.NewLine + "Details were written to:";
+                message += Environment.NewLine + ErrorLogService.LogFilePath;
+            }
+            catch (Exception logException)
+            {
+                message += Environment.NewLine + ex.Message;
+                message += Environment.NewLine + "The error log could not be written:";
+                message += Environment.NewLine + logException.Message;
+            }
+
+            MessageBox.Show(
+                message,
+                "Startup Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
 }

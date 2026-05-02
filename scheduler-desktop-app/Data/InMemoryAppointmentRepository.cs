@@ -90,6 +90,11 @@ namespace scheduler_desktop_app.Data
             );
         }
 
+        public int CountByCustomer(int customerId)
+        {
+            return _appts.Count(a => a.CustomerId == customerId);
+        }
+
         private static Appointment Clone(Appointment a) => new Appointment
         {
             AppointmentId = a.AppointmentId,

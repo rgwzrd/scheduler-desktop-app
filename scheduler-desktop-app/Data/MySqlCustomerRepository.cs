@@ -189,14 +189,6 @@ namespace scheduler_desktop_app.Data
                         using (var cmd = DBConnection.Conn.CreateCommand())
                         {
                             cmd.Transaction = tx;
-                            cmd.CommandText = "DELETE FROM appointment WHERE customerId = @customerId;";
-                            cmd.Parameters.AddWithValue("@customerId", customerId);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        using (var cmd = DBConnection.Conn.CreateCommand())
-                        {
-                            cmd.Transaction = tx;
                             cmd.CommandText = "DELETE FROM customer WHERE customerId = @customerId;";
                             cmd.Parameters.AddWithValue("@customerId", customerId);
                             cmd.ExecuteNonQuery();

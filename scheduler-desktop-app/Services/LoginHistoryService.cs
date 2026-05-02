@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace scheduler_desktop_app.Services
 {
-    internal class LoginHistoryService
+    internal static class LoginHistoryService
     {
-        private static readonly string LogFileName = "Login_History.txt";
+        private const string LogFileName = "Login_History.txt";
 
         public static void Append(string username)
         {
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string line = $"{timestamp} | {username}";
+            string safeUsername = string.IsNullOrWhiteSpace(username)
+                ? "Unknown"
+                : username.Trim();
 
-            File.AppendAllText(LogFileName, line + Environment.NewLine);
+            string line = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | {safeUsername}";
+            string path = AppFileService.GetFilePath(LogFileName);
+
+            File.AppendAllText(path, line + Environment.NewLine);
         }
     }
 }

@@ -2,30 +2,20 @@
 {
     partial class LoginForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.lblUsername = new System.Windows.Forms.Label();
@@ -39,110 +29,99 @@
             this.lblLanguage = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+
             // lblUsername
-            // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(107, 167);
+            this.lblUsername.Location = new System.Drawing.Point(185, 150);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(70, 16);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
-            // 
+
             // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(184, 164);
+            this.txtUsername.Location = new System.Drawing.Point(265, 147);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(124, 22);
+            this.txtUsername.Size = new System.Drawing.Size(160, 22);
             this.txtUsername.TabIndex = 1;
-            // 
+
             // lblPassword
-            // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(107, 199);
+            this.lblPassword.Location = new System.Drawing.Point(185, 184);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(67, 16);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password";
-            // 
+
             // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(184, 193);
+            this.txtPassword.Location = new System.Drawing.Point(265, 181);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(124, 22);
+            this.txtPassword.Size = new System.Drawing.Size(160, 22);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
-            // 
+
             // btnLogin
-            // 
-            this.btnLogin.Location = new System.Drawing.Point(184, 277);
+            this.btnLogin.Location = new System.Drawing.Point(265, 267);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 27);
+            this.btnLogin.Size = new System.Drawing.Size(90, 30);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
+
             // cmbLanguage
-            // 
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
             this.cmbLanguage.Items.AddRange(new object[] {
             "English",
             "Español"});
-            this.cmbLanguage.Location = new System.Drawing.Point(289, 18);
+            this.cmbLanguage.Location = new System.Drawing.Point(505, 18);
             this.cmbLanguage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(121, 24);
+            this.cmbLanguage.Size = new System.Drawing.Size(130, 24);
             this.cmbLanguage.TabIndex = 5;
             this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
-            // 
+
             // lblLocation
-            // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(120, 329);
+            this.lblLocation.AutoSize = false;
+            this.lblLocation.Location = new System.Drawing.Point(125, 335);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(62, 16);
+            this.lblLocation.Size = new System.Drawing.Size(520, 40);
             this.lblLocation.TabIndex = 6;
             this.lblLocation.Text = "Unknown";
-            // 
+
             // lblLocationTitle
-            // 
             this.lblLocationTitle.AutoSize = true;
-            this.lblLocationTitle.Location = new System.Drawing.Point(39, 329);
+            this.lblLocationTitle.Location = new System.Drawing.Point(45, 335);
             this.lblLocationTitle.Name = "lblLocationTitle";
             this.lblLocationTitle.Size = new System.Drawing.Size(61, 16);
             this.lblLocationTitle.TabIndex = 7;
             this.lblLocationTitle.Text = "Location:";
-            // 
+
             // lblLanguage
-            // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(208, 23);
+            this.lblLanguage.Location = new System.Drawing.Point(420, 22);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(71, 16);
             this.lblLanguage.TabIndex = 8;
             this.lblLanguage.Text = "Language:";
-            // 
+
             // lblError
-            // 
-            this.lblError.AutoSize = true;
+            this.lblError.AutoSize = false;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(107, 228);
+            this.lblError.Location = new System.Drawing.Point(188, 220);
             this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 16);
+            this.lblError.Size = new System.Drawing.Size(330, 35);
             this.lblError.TabIndex = 9;
             this.lblError.Visible = false;
-            // 
+
             // LoginForm
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 388);
+            this.ClientSize = new System.Drawing.Size(690, 410);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.lblLocationTitle);
@@ -153,13 +132,15 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -176,4 +157,3 @@
         private System.Windows.Forms.Label lblError;
     }
 }
-

@@ -4,7 +4,7 @@ using scheduler_desktop_app.Database;
 
 namespace scheduler_desktop_app.Data
 {
-    internal class MySqlUserRepository
+    internal class MySqlUserRepository : IUserRepository
     {
         public int? GetUserIdByCredentials(string username, string password)
         {

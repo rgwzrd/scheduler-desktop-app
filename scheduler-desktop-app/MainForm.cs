@@ -16,7 +16,7 @@ namespace scheduler_desktop_app
         private CustomerManagementForm _customers;
         private AppointmentManagementForm _appointments;
         private CalendarForm _calendar;
-        //private ReportsForm _reports;
+        private ReportsForm _reports;
 
         public MainForm()
         {
@@ -36,12 +36,16 @@ namespace scheduler_desktop_app
             var calendarItem = new ToolStripMenuItem("Calendar");
             calendarItem.Click += (s, e) => OpenCalendar();
 
+            var reportsItem = new ToolStripMenuItem("Reports");
+            reportsItem.Click += (s, e) => OpenReports();
+
             var exitItem = new ToolStripMenuItem("Exit");
             exitItem.Click += (s, e) => Close();
 
             menu.Items.Add(customersItem);
             menu.Items.Add(appointmentsItem);
             menu.Items.Add(calendarItem);
+            menu.Items.Add(reportsItem);
             menu.Items.Add(exitItem);
 
             menu.Dock = DockStyle.Top;
@@ -56,11 +60,10 @@ namespace scheduler_desktop_app
                 _customers = new CustomerManagementForm();
                 _customers.MdiParent = this;
                 _customers.Show();
+                return;
             }
-            else
-            {
-                _customers.Activate();
-            }
+
+            _customers.Activate();
         }
 
         private void OpenAppointments()
@@ -70,11 +73,10 @@ namespace scheduler_desktop_app
                 _appointments = new AppointmentManagementForm();
                 _appointments.MdiParent = this;
                 _appointments.Show();
+                return;
             }
-            else
-            {
-                _appointments.Activate();
-            }
+
+            _appointments.Activate();
         }
 
         private void OpenCalendar()
@@ -84,24 +86,23 @@ namespace scheduler_desktop_app
                 _calendar = new CalendarForm();
                 _calendar.MdiParent = this;
                 _calendar.Show();
+                return;
             }
-            else
-            {
-                _calendar.Activate();
-            }
-        }
-        //private void OpenReports()
-        //{
-        //    if (_reports == null || _reports.IsDisposed)
-        //    {
-        //        _reports = new ReportsForm { MdiParent = this };
-        //        _reports.Show();
-        //    }
-        //    else
-        //    {
-        //        _reports.Activate();
-        //    }
-        //}
 
+            _calendar.Activate();
+        }
+
+        private void OpenReports()
+        {
+            if (_reports == null || _reports.IsDisposed)
+            {
+                _reports = new ReportsForm();
+                _reports.MdiParent = this;
+                _reports.Show();
+                return;
+            }
+
+            _reports.Activate();
+        }
     }
 }
