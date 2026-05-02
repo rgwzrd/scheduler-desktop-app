@@ -10,7 +10,10 @@ namespace scheduler_desktop_app.Data
     {
         public static int CurrentUserId = 0;
 
-        public static ICustomerRepository CustomerRepo = new MySqlCustomerRepository();
-        public static IAppointmentRepository AppointmentRepo = new MySqlAppointmentRepository();
+        public static bool IsDemoMode { get; set; }
+
+        public static IUserRepository UserRepo { get; set; }
+        public static ICustomerRepository CustomerRepo { get; set; }
+        public static IAppointmentRepository AppointmentRepo { get; set; }
     }
 }

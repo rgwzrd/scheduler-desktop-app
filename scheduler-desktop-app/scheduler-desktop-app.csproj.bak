@@ -115,8 +115,8 @@
     <Compile Include="Data\InMemoryCustomerRepository.cs" />
     <Compile Include="CustomerEditForm.cs">
 	<Compile Include="Data\IUserRepository.cs" />
-	<Compile Include="Data\InMemoryUserRepository.cs" />
-	<Compile Include="Data\DemoDataSeeder.cs" />
+<Compile Include="Data\InMemoryUserRepository.cs" />
+<Compile Include="Data\DemoDataSeeder.cs" />
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomerEditForm.Designer.cs">
