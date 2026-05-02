@@ -283,6 +283,33 @@ namespace scheduler_desktop_app.Data
             }
         }
 
+        public int CountByCustomer(int customerId)
+        {
+            try
+            {
+                EnsureConn();
+
+                using (var cmd = DBConnection.Conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                SELECT COUNT(*)
+                FROM appointment
+                WHERE customerId = @customerId;";
+
+                    cmd.Parameters.AddWithValue("@customerId", customerId);
+
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new AppointmentOperationException(
+                    "CountByCustomer",
+                    "Unable to count customer appointments.",
+                    ex);
+            }
+        }
+
         private static Appointment MapAppointment(MySqlDataReader reader)
         {
             var start = (DateTime)reader["start"];

@@ -16,6 +16,7 @@ namespace scheduler_desktop_app
     public partial class CustomerManagementForm : Form
     {
         private readonly ICustomerRepository _repo = AppState.CustomerRepo;
+
         public CustomerManagementForm()
         {
             InitializeComponent();
@@ -23,27 +24,27 @@ namespace scheduler_desktop_app
 
         private void CustomerManagementForm_Load(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
             LoadCustomers();
         }
 
         private void LoadCustomers()
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
 
-            var customers = _repo.GetAll();
             dgvCustomers.DataSource = null;
-            dgvCustomers.DataSource = customers;
+            dgvCustomers.DataSource = _repo.GetAll();
         }
 
         private Customer GetSelectedCustomer()
         {
-            if (dgvCustomers.CurrentRow == null)
-                return null;
+            return dgvCustomers.CurrentRow?.DataBoundItem as Customer;
+        }
 
-            return dgvCustomers.CurrentRow.DataBoundItem as Customer;
+        private void ClearError()
+        {
+            lblError.Text = string.Empty;
+            lblError.Visible = false;
         }
 
         private void ShowError(string message)
@@ -55,37 +56,37 @@ namespace scheduler_desktop_app
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
 
             using (var form = new CustomerEditForm())
             {
-                if (form.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() != DialogResult.OK)
                 {
-                    try
-                    {
-                        _repo.Add(form.CustomerResult);
-                        LoadCustomers();
-                    }
+                    return;
+                }
 
-                    catch (CustomerOperationException ex)
-                    {
-                        ShowError(ex.Message);
-                    }
-                    catch (Exception)
-                    {
-                        ShowError("Unexpected error while adding customer.");
-                    }
+                try
+                {
+                    _repo.Add(form.CustomerResult);
+                    LoadCustomers();
+                }
+                catch (CustomerOperationException ex)
+                {
+                    ShowError(ex.Message);
+                }
+                catch (Exception)
+                {
+                    ShowError("Unexpected error while adding customer.");
                 }
             }
         }
 
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
 
-            var selected = GetSelectedCustomer();
+            Customer selected = GetSelectedCustomer();
+
             if (selected == null)
             {
                 ShowError("Select a customer to edit.");
@@ -94,32 +95,33 @@ namespace scheduler_desktop_app
 
             using (var form = new CustomerEditForm(selected))
             {
-                if (form.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() != DialogResult.OK)
                 {
-                    try
-                    {
-                        _repo.Update(form.CustomerResult);
-                        LoadCustomers();
-                    }
-                    catch (CustomerOperationException ex)
-                    {
-                        ShowError(ex.Message);
-                    }
-                    catch (Exception)
-                    {
-                        ShowError("Unexpected error while updating customer.");
-                    }
+                    return;
+                }
 
+                try
+                {
+                    _repo.Update(form.CustomerResult);
+                    LoadCustomers();
+                }
+                catch (CustomerOperationException ex)
+                {
+                    ShowError(ex.Message);
+                }
+                catch (Exception)
+                {
+                    ShowError("Unexpected error while updating customer.");
                 }
             }
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
 
-            var selected = GetSelectedCustomer();
+            Customer selected = GetSelectedCustomer();
+
             if (selected == null)
             {
                 ShowError("Select a customer to delete.");
@@ -128,20 +130,43 @@ namespace scheduler_desktop_app
 
             try
             {
+                int appointmentCount =
+                    AppState.AppointmentRepo.CountByCustomer(selected.CustomerId);
+
+                if (appointmentCount > 0)
+                {
+                    ShowError(
+                        $"Cannot delete this customer because they have {appointmentCount} appointment(s). Delete the appointments first.");
+
+                    return;
+                }
+
+                DialogResult confirm = MessageBox.Show(
+                    "Delete this customer?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm != DialogResult.Yes)
+                {
+                    return;
+                }
+
                 _repo.Delete(selected.CustomerId);
                 LoadCustomers();
             }
-
             catch (CustomerOperationException ex)
             {
                 ShowError(ex.Message);
             }
-
+            catch (AppointmentOperationException ex)
+            {
+                ShowError(ex.Message);
+            }
             catch (Exception)
             {
                 ShowError("Unexpected error while deleting customer.");
             }
         }
-
     }
 }

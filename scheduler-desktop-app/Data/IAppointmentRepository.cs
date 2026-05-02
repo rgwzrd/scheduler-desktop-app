@@ -18,5 +18,6 @@ namespace scheduler_desktop_app.Data
         void Delete(int appointmentId);
 
         bool Overlaps(int userId, DateTime startUtc, DateTime endUtc, int ignoreAppointmentId);
+        int CountByCustomer(int customerId);
     }
 }
