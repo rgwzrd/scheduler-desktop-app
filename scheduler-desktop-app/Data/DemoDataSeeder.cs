@@ -83,8 +83,12 @@ namespace scheduler_desktop_app.Data
         {
             TimeZoneInfo easternTimeZone = TimeService.GetEasternTimeZone();
 
-            return TimeZoneInfo.ConvertTimeToUtc(
+            DateTime unspecifiedEasternTime = DateTime.SpecifyKind(
                 easternTime,
+                DateTimeKind.Unspecified);
+
+            return TimeZoneInfo.ConvertTimeToUtc(
+                unspecifiedEasternTime,
                 easternTimeZone);
         }
     }
