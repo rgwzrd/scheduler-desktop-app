@@ -23,8 +23,7 @@ namespace scheduler_desktop_app
 
         private void AppointmentManagementForm_Load(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblError.Visible = false;
+            ClearError();
 
             dgvAppointments.ReadOnly = true;
             dgvAppointments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -35,115 +34,148 @@ namespace scheduler_desktop_app
 
         private void LoadAppointments()
         {
-            var appts = AppState.AppointmentRepo.GetByUser(AppState.CurrentUserId);
-
             dgvAppointments.DataSource = null;
-            dgvAppointments.DataSource = appts;
+            dgvAppointments.DataSource =
+                AppState.AppointmentRepo.GetByUser(AppState.CurrentUserId);
 
             if (dgvAppointments.Columns["StartUtc"] != null)
+            {
                 dgvAppointments.Columns["StartUtc"].Visible = false;
+            }
 
             if (dgvAppointments.Columns["EndUtc"] != null)
+            {
                 dgvAppointments.Columns["EndUtc"].Visible = false;
+            }
 
             if (dgvAppointments.Columns["StartLocal"] != null)
+            {
                 dgvAppointments.Columns["StartLocal"].HeaderText = "Start";
+            }
 
             if (dgvAppointments.Columns["EndLocal"] != null)
+            {
                 dgvAppointments.Columns["EndLocal"].HeaderText = "End";
+            }
         }
 
         private Appointment GetSelected()
         {
             return dgvAppointments.CurrentRow?.DataBoundItem as Appointment;
         }
-        private void ShowErrorText()
+
+        private void ClearError()
         {
+            lblError.Text = string.Empty;
+            lblError.Visible = false;
+        }
+
+        private void ShowError(string message)
+        {
+            lblError.Text = message;
             lblError.ForeColor = Color.Red;
             lblError.Visible = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            lblError.Visible = false;
+            ClearError();
 
-            var customers = AppState.CustomerRepo.GetAll().ToArray();
+            Customer[] customers = AppState.CustomerRepo.GetAll().ToArray();
+
             if (customers.Length == 0)
             {
-                lblError.Text = "Add a customer first.";
-                ShowErrorText();
+                ShowError("Add a customer first.");
                 return;
             }
 
-            using (var f = new AppointmentEditForm(AppState.AppointmentRepo, customers, AppState.CurrentUserId))
+            using (var form = new AppointmentEditForm(
+                AppState.AppointmentRepo,
+                customers,
+                AppState.CurrentUserId))
             {
-                if (f.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() != DialogResult.OK)
                 {
-                    try
-                    {
-                        AppState.AppointmentRepo.Add(f.Result);
-                        LoadAppointments();
-                    }
-                    catch (AppointmentOperationException ex)
-                    {
-                        lblError.Text = ex.Message;
-                        ShowErrorText();
-                    }
-                    catch (Exception)
-                    {
-                        lblError.Text = "Unexpected error while adding appointment.";
-                        ShowErrorText();
-                    }
+                    return;
+                }
+
+                try
+                {
+                    AppState.AppointmentRepo.Add(form.Result);
+                    LoadAppointments();
+                }
+                catch (AppointmentOperationException ex)
+                {
+                    ShowError(ex.Message);
+                }
+                catch (Exception)
+                {
+                    ShowError("Unexpected error while adding appointment.");
                 }
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            lblError.Visible = false;
+            ClearError();
 
-            var selected = GetSelected();
+            Appointment selected = GetSelected();
+
             if (selected == null)
             {
-                lblError.Text = "Select an appointment to edit.";
-                ShowErrorText();
+                ShowError("Select an appointment to edit.");
                 return;
             }
 
-            var customers = AppState.CustomerRepo.GetAll().ToArray();
+            Customer[] customers = AppState.CustomerRepo.GetAll().ToArray();
 
-            using (var f = new AppointmentEditForm(AppState.AppointmentRepo, customers, AppState.CurrentUserId, selected))
+            using (var form = new AppointmentEditForm(
+                AppState.AppointmentRepo,
+                customers,
+                AppState.CurrentUserId,
+                selected))
             {
-                if (f.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() != DialogResult.OK)
                 {
-                    try
-                    {
-                        AppState.AppointmentRepo.Update(f.Result);
-                        LoadAppointments();
-                    }
-                    catch (AppointmentOperationException ex)
-                    {
-                        lblError.Text = ex.Message;
-                        ShowErrorText();
-                    }
-                    catch (Exception)
-                    {
-                        lblError.Text = "Unexpected error while updating appointment.";
-                        ShowErrorText();
-                    }
+                    return;
+                }
+
+                try
+                {
+                    AppState.AppointmentRepo.Update(form.Result);
+                    LoadAppointments();
+                }
+                catch (AppointmentOperationException ex)
+                {
+                    ShowError(ex.Message);
+                }
+                catch (Exception)
+                {
+                    ShowError("Unexpected error while updating appointment.");
                 }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lblError.Visible = false;
+            ClearError();
 
-            var selected = GetSelected();
+            Appointment selected = GetSelected();
+
             if (selected == null)
             {
-                lblError.Text = "Select an appointment to delete.";
-                ShowErrorText();
+                ShowError("Select an appointment to delete.");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Delete this appointment?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes)
+            {
                 return;
             }
 
@@ -154,29 +186,27 @@ namespace scheduler_desktop_app
             }
             catch (AppointmentOperationException ex)
             {
-                lblError.Text = ex.Message;
-                ShowErrorText();
+                ShowError(ex.Message);
             }
             catch (Exception)
             {
-                lblError.Text = "Unexpected error while deleting appointment.";
-                ShowErrorText();
+                ShowError("Unexpected error while deleting appointment.");
             }
         }
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            using (var f = new CalendarForm())
+            using (var form = new CalendarForm())
             {
-                f.ShowDialog();
+                form.ShowDialog();
             }
         }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
-            using (var f = new ReportsForm())
+            using (var form = new ReportsForm())
             {
-                f.ShowDialog();
+                form.ShowDialog();
             }
         }
     }
