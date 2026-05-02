@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace scheduler_desktop_app
 {
     internal class SchedulerApplicationContext : ApplicationContext
@@ -30,13 +29,17 @@ namespace scheduler_desktop_app
             if (_loginForm.DialogResult == DialogResult.OK)
             {
                 _mainForm = new MainForm();
-                _mainForm.FormClosed += (s, args) => ExitThread();
+                _mainForm.FormClosed += MainFormClosed;
                 _mainForm.Show();
+                return;
             }
-            else
-            {
-                ExitThread();
-            }
+
+            ExitThread();
+        }
+
+        private void MainFormClosed(object sender, FormClosedEventArgs e)
+        {
+            ExitThread();
         }
     }
 }

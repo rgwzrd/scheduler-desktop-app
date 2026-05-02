@@ -10,7 +10,7 @@ namespace scheduler_desktop_app
     internal static class Program
     {
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -24,13 +24,7 @@ namespace scheduler_desktop_app
             }
             catch (Exception ex)
             {
-                ErrorLogService.Log(ex); // to be added
-
-                MessageBox.Show(
-                    "The application could not start. Check the log file for details.",
-                    "Startup Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                ShowStartupError(ex);
             }
             finally
             {
@@ -44,7 +38,11 @@ namespace scheduler_desktop_app
         private static bool IsDemoModeEnabled()
         {
             string value = ConfigurationManager.AppSettings["UseDemoData"];
-            return string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+
+            return string.Equals(
+                value,
+                "true",
+                StringComparison.OrdinalIgnoreCase);
         }
 
         private static void ConfigureRepositories(bool useDemoData)
@@ -66,6 +64,30 @@ namespace scheduler_desktop_app
             AppState.UserRepo = new MySqlUserRepository();
             AppState.CustomerRepo = new MySqlCustomerRepository();
             AppState.AppointmentRepo = new MySqlAppointmentRepository();
+        }
+
+        private static void ShowStartupError(Exception ex)
+        {
+            string message = "The application could not start.";
+
+            try
+            {
+                ErrorLogService.Log(ex);
+                message += Environment.NewLine + "Details were written to:";
+                message += Environment.NewLine + ErrorLogService.LogFilePath;
+            }
+            catch (Exception logException)
+            {
+                message += Environment.NewLine + ex.Message;
+                message += Environment.NewLine + "The error log could not be written:";
+                message += Environment.NewLine + logException.Message;
+            }
+
+            MessageBox.Show(
+                message,
+                "Startup Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
 }
